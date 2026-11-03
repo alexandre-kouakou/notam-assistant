@@ -1,0 +1,14 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter
+pytest
+datasets
+transformers
+torch
+accelerate
+evaluate
+anthropic
+python-dotenv

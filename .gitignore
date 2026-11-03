@@ -1,0 +1,11 @@
+data/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+.env
+
+# Outputs — ignore by default, then un-ignore deliverables we want versioned
+outputs/*
+!outputs/experiments.csvnotam/

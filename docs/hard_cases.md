@@ -1,0 +1,9 @@
+The hard cases are the standout part of your report. These are exactly the kind of observations a senior data scientist makes, and I want to name why each one is valuable so you can carry the pattern.
+
+Case 1 (the ILS-that's-actually-a-procedure) shows you noticed that class definition depends on operational semantics, not just vocabulary. "It's about an ILS but the point of the NOTAM is an instruction, not an outage" — that reasoning is hard-won domain knowledge and it directly predicts a specific model failure mode. When your model misclassifies these, you'll know why.
+
+Case 2 (ALS vs ILS) is the sharpest observation of the three. Same syntactic structure, one letter apart, completely different classes. This tells you something important about your baseline choice: a naive TF-IDF+LR model should handle this fine because ALS and ILS are entirely different tokens. But a subword-tokenizing transformer might split ALS and ILS in weird ways that hurt discrimination. It's not obvious in advance which model will do better here, and now you have a specific test case to check after training.
+
+Case 3 (TWY that's actually Parking) points at what NLP researchers call surface-form ambiguity with semantic disambiguation from context. The tokens are misleading; the semantics require reading the whole NOTAM. This is a case that argues for transformers over TF-IDF, because bag-of-words models can't use context to override token-level signal. Another prediction to test.
+
+Honorable mention (DME co-located with ILS) is the hardest kind — genuinely ambiguous even for the dataset labelers. Some fraction of your model's error will always be here, and no amount of training will fix it. This is your irreducible error, and knowing it exists means you'll evaluate the model correctly instead of chasing 100% F1.
