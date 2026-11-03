@@ -1,11 +1,29 @@
+cat > .gitignore << 'EOF'
+# Data
 data/
+
+# Python
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .venv/
-.DS_Store
+notam/
+.pytest_cache/
+
+# Model artifacts and intermediate outputs
+*.npy
+*.joblib
+
+# Environment
 .env
 
-# Outputs — ignore by default, then un-ignore deliverables we want versioned
+# OS
+.DS_Store
+
+# Outputs — ignore by default, then un-ignore versioned deliverables
 outputs/*
-!outputs/experiments.csvnotam/
+!outputs/experiments.csv
+!outputs/final_evaluation.txt
+!outputs/results_trajectory.png
+!outputs/results_per_class_delta.png
+EOF
